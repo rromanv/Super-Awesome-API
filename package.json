@@ -1,0 +1,9 @@
+{
+  "name": "super-awesome-api",
+  "version": "1.0.0",
+  "description": "API for our super Awesome App",
+  "main": "index.js",
+  "repository": "https://github.com/rromanv/Super-Awesome-API.git",
+  "author": "Rodolfo Roman <rromanve@southtexascollege.edu>",
+  "license": "MIT"
+}
