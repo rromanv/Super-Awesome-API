@@ -5,5 +5,15 @@
   "main": "index.js",
   "repository": "https://github.com/rromanv/Super-Awesome-API.git",
   "author": "Rodolfo Roman <rromanve@southtexascollege.edu>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node index.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "nodemon": "^1.19.4"
+  }
 }
