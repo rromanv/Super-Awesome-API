@@ -5,6 +5,8 @@ import apiRouter from './src/routes/api'
 const app = express()
 const port = 3000
 
+app.use(express.json())
+
 app.use('/', indexRouter)
 app.use('/api', apiRouter)
 
