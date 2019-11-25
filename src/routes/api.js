@@ -6,34 +6,25 @@ const router = Router()
 
 /* This is being called from /api already*/
 router.get('/', auth, (req, res) => {
-  res.json({msg:'Hello from the actual API'})
+  res.json({ msg: 'Hello from the actual API' })
 })
 
-router.get('/posts', auth, (req, res) => {
-  res.json(posts)
+router.get('/posts', auth, async (req, res) => {
+  const allPosts = await posts.getAll()
+  res.json(allPosts)
 })
 
-router.get('/posts/:postId', auth, (req, res) => {
-  const post = posts.filter(p => p.id == req.params.postId)[0]
-  post ? res.json(post) : res.status(404).end()
+router.get('/posts/:postId', auth, async (req, res) => {
+  const post = await posts.getById(req.params.postId)
+  post.length > 0 ? res.json(post[0]) : res.status(404).end()
 })
 
-router.post('/posts', auth, (req, res) => {
-  const newPost = req.body.post
-                  ? req.body.post.text
-                    ? {
-                      id: posts.length,
-                      text: req.body.post.text
-                    }
-                    : null
-                  : null
-  
-  if(newPost) {
-    posts.push(newPost)
-    res.json(newPost)
-  } else {
-    res.status(400).end()
-  }
+router.post('/posts', auth, async (req, res) => {
+  const newPost = req.body.post?.text
+    ? await posts.add(req.body.post.text)
+    : null
+
+  newPost ? res.json(await posts.getById(newPost[0])) : res.status(400).end()
 })
 
 export default router
