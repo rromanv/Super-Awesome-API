@@ -7,8 +7,8 @@ const posts = {
   getById: async id => {
     return await db('posts').where({ id })
   },
-  add: async text => {
-    return await db('posts').insert({ text })
+  add: async post => {
+    return await db('posts').insert(post)
   }
 }
 

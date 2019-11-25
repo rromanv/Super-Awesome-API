@@ -11,27 +11,32 @@ const createTables = async () => {
     ? await db.schema.createTable('posts', table => {
         table.increments()
         table.string('text')
+        table.string('authorId')
+        table.string('authorName')
+        table.string('authorPhoto')
       })
     : null
   !(await db.schema.hasTable('comments'))
     ? await db.schema.createTable('comments', table => {
         table.increments()
         table.integer('postId')
-        table.string('comment')
+        table.string('text')
+        table.string('authorId')
+        table.string('authorName')
       })
     : null
   !(await db.schema.hasTable('likes'))
     ? await db.schema.createTable('likes', table => {
         table.increments()
         table.integer('postId')
-        table.string('userId')
+        table.string('authorId')
       })
     : null
   !(await db.schema.hasTable('dislikes'))
     ? await db.schema.createTable('dislikes', table => {
         table.increments()
         table.integer('postId')
-        table.string('userId')
+        table.string('authorId')
       })
     : null
 }
